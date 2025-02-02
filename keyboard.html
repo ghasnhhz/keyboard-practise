@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>Keyboard</title>
+    <style>
+      .myDiv {
+        margin-top: 80px;
+        border: 3px solid grey;
+        height: 200px;
+        background-color: lightblue;
+        font-size: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+      }
+
+      .myDiv2 {
+        height: 180px;
+        background-color: rgb(251, 251, 200);
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .myFirstDiv {
+        height: 60px;
+        width: 100%;
+        background-color: rgb(251, 251, 200);
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;       
+        align-items: center;
+        align-content: center;
+      }
+      .mySecondDiv {
+        height: 60px;
+        width: 100%;
+        background-color: rgb(251, 251, 200);
+        margin-top: 4px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;    
+        align-items: center;
+        align-content: center;
+      }
+      .myThirdDiv {
+        height: 60px;
+        width: 100%;
+        background-color: rgb(251, 251, 200);
+        margin-top: 4px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center; 
+        align-items: center; 
+        align-content: center;
+      }
+
+      .button {
+        color: rgb(34, 34, 34);
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+        margin: 5px 5px;
+        border: 1px solid black;
+        text-align: center
+      }
+
+      .myDiv3 {
+        margin-top: 60px;
+        font-size: 50px;
+        font-family: Arial;
+        display: flex;
+        justify-content: center;
+        height: 100px; /* Fix the height to avoid layout shifts */
+        visibility: hidden;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="myDiv">Press a key to see the result here</div>
+
+    <div class="myDiv2">
+      <div class="myFirstDiv">
+        <button class="js-q-button button">q</button>
+        <button class="js-w-button button">w</button>
+        <button class="js-e-button button">e</button>
+        <button class="js-r-button button">r</button>
+        <button class="js-t-button button">t</button>
+        <button class="js-y-button button">y</button>
+        <button class="js-u-button button">u</button>
+        <button class="js-i-button button">i</button>
+        <button class="js-o-button button">o</button>
+        <button class="js-p-button button">p</button>
+      </div>
+
+      <div class="mySecondDiv">
+        <button class="js-a-button button">a</button>
+        <button class="js-s-button button">s</button>
+        <button class="js-d-button button">d</button>
+        <button class="js-f-button button">f</button>
+        <button class="js-g-button button">g</button>
+        <button class="js-h-button button">h</button>
+        <button class="js-j-button button">j</button>
+        <button class="js-k-button button">k</button>
+        <button class="js-l-button button">l</button>
+      </div>
+
+      <div class="myThirdDiv">
+        <button class="js-z-button button">z</button>
+        <button class="js-x-button button">x</button>
+        <button class="js-c-button button">c</button>
+        <button class="js-v-button button">v</button>
+        <button class="js-b-button button">b</button>
+        <button class="js-n-button button">n</button>
+        <button class="js-m-button button">m</button>
+        </div>
+    </div>
+
+    <p class="myDiv3">Welcome to my page</p>
+
+    <script>
+      const para = document.querySelector('.myDiv3');
+      let check = true;
+
+      setInterval(() => {
+        if (check) {
+          para.style.visibility = 'visible'; // Show the text
+        } else {
+          para.style.visibility = 'hidden'; // Hide the text
+        }
+        check = !check;
+      }, 2000);
+
+      
+      let timeoutID;
+      document.body.addEventListener('keydown', (event) => {
+        const key = event.key.toLowerCase(); // Ensure case insensitivity
+        document.querySelector('.myDiv').innerText = `You pressed: ${key}`;
+
+        const button = document.querySelector(`.js-${key}-button`);
+
+        if (button) {
+          button.style.backgroundColor = 'yellow'; // Reset color
+          timeoutID = setTimeout(() => {
+            button.style.backgroundColor = '';
+          }, 300); // Reset after 300ms === 0.3sec.
+        } else {
+          console.warn(`No button found for key: ${key}`);
+        }
+      });
+    </script>
+  </body>
+</html>
